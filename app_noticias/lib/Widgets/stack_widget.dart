@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class ParteInicial extends StatefulWidget {
-  const ParteInicial({
-    Key? key,
-    required Future<String> method,
-    required String imagemInicial,
-    required String tituloInicial,
-  }) : super(key: key);
+class StackWidget extends StatelessWidget {
+  const StackWidget({Key? key, required this.articles, required this.method})
+      : super(key: key);
 
-  @override
-  State<ParteInicial> createState() => _ParteInicialState();
-}
-
-class _ParteInicialState extends State<ParteInicial> {
-  final Future<String>? method = null;
-  final String? imagemInicial = '';
-  final String tituloInicial = '';
+  final List<dynamic> articles;
+  final method;
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +28,30 @@ class _ParteInicialState extends State<ParteInicial> {
                     clipBehavior: Clip.hardEdge,
                     fit: BoxFit.cover,
                     child: Image.network(
-                      imagemInicial ?? '',
+                      articles[0].urlToImage ?? '',
                     ),
                   ),
                 )),
           ),
         ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 2.2,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.black54,
-          ),
-        ),
+        InkWell(
+            onTap: () {
+              launch(articles[0].url);
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 2.2,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.black54,
+              ),
+            )),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 10),
+          padding: const EdgeInsets.symmetric(
+            vertical: 80,
+            horizontal: 10,
+          ),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,14 +78,16 @@ class _ParteInicialState extends State<ParteInicial> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 10,
+                  ),
                   child: FutureBuilder(
                     future: method,
                     builder: ((context, snapshot) => Visibility(
                           visible: snapshot.hasData,
                           child: Text(
-                            tituloInicial,
+                            articles[0].title,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -96,14 +96,22 @@ class _ParteInicialState extends State<ParteInicial> {
                         )),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                  child: Text(
-                    "Leia mais ->",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: RichText(
+                    text: const TextSpan(children: [
+                      TextSpan(text: "Leia mais    "),
+                      WidgetSpan(
+                        child: Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ]),
                   ),
                 ),
               ],

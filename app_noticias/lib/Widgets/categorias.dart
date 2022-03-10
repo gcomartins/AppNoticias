@@ -5,61 +5,66 @@ class Categorias extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(6),
-          child: ElevatedButton(
-            onPressed: () => 1,
-            child: const Text(
-              "Principal",
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(6),
-          child: ElevatedButton(
-            onPressed: () => 1,
-            child: const Text(
-              "Tecnologia",
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.grey),
+    return SizedBox(
+      // color: Colors.orange,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 12,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: ElevatedButton(
+              onPressed: () => 1,
+              child: const Text(
+                "Principal",
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.grey),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(6),
-          child: ElevatedButton(
-            onPressed: () => 1,
-            child: const Text(
-              "Saúde",
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.grey),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(6),
-          child: ElevatedButton(
-            onPressed: () => 1,
-            child: const Text(
-              "Economia",
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.grey),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: ElevatedButton(
+              onPressed: () => 1,
+              child: const Text(
+                "Tecnologia",
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+              ),
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: ElevatedButton(
+              onPressed: () => 1,
+              child: const Text(
+                "Saúde",
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: ElevatedButton(
+              onPressed: () => 1,
+              child: const Text(
+                "Economia",
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

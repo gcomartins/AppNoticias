@@ -3,7 +3,9 @@ import 'package:app_noticias/Widgets/scrollview_widget.dart';
 import 'package:app_noticias/Widgets/stack_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../src/consts.dart';
 import 'article.dart';
 import 'categorias.dart';
 
@@ -20,9 +22,38 @@ class _MyHomePageState extends State<MyHomePage> {
   Response? response;
   Dio dio = Dio();
 
-  Future<String> _getNews() async {
-    response = await dio.get(
-        "https://newsapi.org/v2/top-headlines?country=br&apiKey=315271f2d01948be965d0823aa6ecce3");
+  Future<String> _getTrendingPrincipal() async {
+    response = await dio.get(Constantes.urlTrendingUS);
+
+    final json = response?.data['articles'];
+
+    _articles = json.map((e) => Article.fromJson(e)).toList();
+
+    return 'OK';
+  }
+
+  Future<String> _getTrendingTech() async {
+    response = await dio.get(Constantes.urlTrendingTech);
+
+    final json = response?.data['articles'];
+
+    _articles = json.map((e) => Article.fromJson(e)).toList();
+
+    return 'OK';
+  }
+
+  Future<String> _getTrendingHealth() async {
+    response = await dio.get(Constantes.urlTrendingHealth);
+
+    final json = response?.data['articles'];
+
+    _articles = json.map((e) => Article.fromJson(e)).toList();
+
+    return 'OK';
+  }
+
+  Future<String> _getTrendingSports() async {
+    response = await dio.get(Constantes.urlTrendingSports);
 
     final json = response?.data['articles'];
 
@@ -41,19 +72,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Column(
         children: [
-          StackWidget(articles: _articles, method: _getNews()),
+          StackWidget(articles: _articles, method: _getTrendingPrincipal()),
           const Categorias(),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height / 15,
-            child: const Center(
+            child: Center(
               child: Text(
-                "Últimas notícias",
-                style: TextStyle(fontSize: 24),
+                "Breaking News",
+                style: GoogleFonts.lato(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
-          ScrollViewWidget(articles: _articles, method: _getNews()),
+          ScrollViewWidget(
+              articles: _articles, method: _getTrendingPrincipal()),
         ],
       ),
       bottomNavigationBar: const BottomBarWidget(),

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: const MyHomePage(),
+      // home: const NewsPage(),
     );
   }
 }

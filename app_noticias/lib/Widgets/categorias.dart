@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Categorias extends StatelessWidget {
   const Categorias({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class Categorias extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => 1,
               child: const Text(
-                "Tecnologia",
+                "Technology",
               ),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -42,7 +43,7 @@ class Categorias extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => 1,
               child: const Text(
-                "Saúde",
+                "Health",
               ),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -55,7 +56,7 @@ class Categorias extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => 1,
               child: const Text(
-                "Economia",
+                "Economy",
               ),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),

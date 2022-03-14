@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ScrollViewWidget extends StatelessWidget {
   const ScrollViewWidget(
@@ -12,24 +13,27 @@ class ScrollViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
+        // color: Colors.orange,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height / 2.4,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: articles.length,
+            itemCount: articles.length - 1,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width * 0.6,
                   height: MediaQuery.of(context).size.height / 8,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
                           child: SizedBox(
-                            width: MediaQuery.of(context).size.width / 1,
-                            height: MediaQuery.of(context).size.height / 4,
+                            // color: Colors.orange,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            height: MediaQuery.of(context).size.height / 6.5,
                             child: FittedBox(
                               clipBehavior: Clip.hardEdge,
                               fit: BoxFit.cover,
@@ -46,6 +50,11 @@ class ScrollViewWidget extends StatelessWidget {
                           ),
                           onTap: () {
                             launch(articles[index + 1].url);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (BuildContext context) => NewsPage(
+                            //             article: articles[index + 1])));
                           }),
                       Flexible(
                         child: FutureBuilder(
@@ -53,11 +62,26 @@ class ScrollViewWidget extends StatelessWidget {
                           builder: (context, snapshot) => Visibility(
                             child: Text(
                               articles[index + 1].title,
-                              style: const TextStyle(fontSize: 15),
+                              style: GoogleFonts.lato(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
                       ),
+                      Text(
+                        "${(DateTime.now().hour - DateTime.parse(articles[index + 1].publishedAt).hour) + 2} hours ago",
+                        style: GoogleFonts.lato(
+                            color: const Color.fromARGB(87, 0, 0, 0),
+                            fontSize: 13),
+                      ),
+                      Text(
+                        "by ${articles[index + 1].author ?? articles[index + 1].name}",
+                        style: GoogleFonts.lato(
+                            color: const Color.fromARGB(87, 0, 0, 0),
+                            fontSize: 13),
+                      )
                     ],
                   ),
                 ),

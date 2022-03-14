@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StackWidget extends StatelessWidget {
@@ -35,18 +36,24 @@ class StackWidget extends StatelessWidget {
           ),
         ),
         InkWell(
-            onTap: () {
-              launch(articles[0].url);
-            },
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.2,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.black54,
-              ),
-            )),
+          onTap: () {
+            launch(articles[0].url);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) =>
+            //             NewsPage(article: articles[0])));
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 2.2,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(20),
+              color: const Color.fromARGB(176, 0, 0, 0),
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 80,
@@ -68,9 +75,9 @@ class StackWidget extends StatelessWidget {
                     ),
                     width: MediaQuery.of(context).size.width / 3,
                     height: MediaQuery.of(context).size.height / 30,
-                    child: const Text(
-                      "Notícia do Dia",
-                      style: TextStyle(
+                    child: Text(
+                      "News of the day",
+                      style: GoogleFonts.lato(
                         color: Colors.white,
                         fontSize: 14,
                       ),
@@ -88,12 +95,22 @@ class StackWidget extends StatelessWidget {
                           visible: snapshot.hasData,
                           child: Text(
                             articles[0].title,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
+                            style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700),
                           ),
                         )),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Text(
+                    "by ${articles[0].author ?? articles[0].name}",
+                    style: GoogleFonts.lato(
+                      fontSize: 16,
+                      color: const Color.fromARGB(209, 255, 255, 255),
+                    ),
                   ),
                 ),
                 Padding(
@@ -102,12 +119,16 @@ class StackWidget extends StatelessWidget {
                     horizontal: 15,
                   ),
                   child: RichText(
-                    text: const TextSpan(children: [
-                      TextSpan(text: "Leia mais    "),
-                      WidgetSpan(
+                    text: TextSpan(children: [
+                      TextSpan(
+                          text: "Learn More    ",
+                          style: GoogleFonts.lato(
+                            fontSize: 18,
+                          )),
+                      const WidgetSpan(
                         child: Icon(
                           Icons.arrow_forward_ios_sharp,
-                          size: 14,
+                          size: 16,
                           color: Colors.white,
                         ),
                       ),

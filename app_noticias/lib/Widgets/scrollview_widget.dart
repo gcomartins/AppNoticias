@@ -18,7 +18,7 @@ class ScrollViewWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 2.4,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: articles.length - 1,
+            itemCount: (articles.length - 1) > 0 ? articles.length - 1 : 0,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding:
@@ -41,8 +41,10 @@ class ScrollViewWidget extends StatelessWidget {
                                 future: method,
                                 builder: (context, snapshot) => Visibility(
                                   visible: snapshot.hasData,
-                                  child: Image.network(
-                                    articles[index + 1].urlToImage,
+                                  child: Expanded(
+                                    child: Image.network(
+                                      articles[index + 1].urlToImage,
+                                    ),
                                   ),
                                 ),
                               ),

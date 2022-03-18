@@ -37,7 +37,7 @@ class StackWidget extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            launch(articles[0].url);
+            launch(articles[0].url ?? '');
             // Navigator.push(
             //     context,
             //     MaterialPageRoute(
@@ -94,7 +94,7 @@ class StackWidget extends StatelessWidget {
                     builder: ((context, snapshot) => Visibility(
                           visible: snapshot.hasData,
                           child: Text(
-                            articles[0].title,
+                            articles[0].title ?? '',
                             style: GoogleFonts.lato(
                                 color: Colors.white,
                                 fontSize: 25,

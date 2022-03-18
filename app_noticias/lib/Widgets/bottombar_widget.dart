@@ -8,13 +8,26 @@ class BottomBarWidget extends StatelessWidget {
     return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(
+            Icons.home,
+            color: Colors.black,
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search_rounded),
-          label: 'Pesquisar',
-        )
+          icon: Icon(
+            Icons.search_rounded,
+            color: Colors.black,
+          ),
+          label: 'Serach',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.people_outlined,
+            color: Colors.black,
+          ),
+          label: 'Profile',
+        ),
       ],
     );
   }
